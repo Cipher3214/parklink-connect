@@ -1,15 +1,17 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
-import { Menu, X, Car, Users, MapPin } from 'lucide-react';
+import { Menu, X, Car, Users, MapPin, Moon, Sun } from 'lucide-react';
+import { useTheme } from 'next-themes';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { theme, setTheme } = useTheme();
 
   const isActive = (path: string) => location.pathname === path;
-
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
+  const toggleTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark');
 
   return (
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
@@ -46,18 +48,18 @@ const Navbar = () => {
             >
               About
             </Link>
-            <Link 
-              to="/admin" 
-              className={`text-sm font-medium transition-colors hover:text-primary ${
-                isActive('/admin') ? 'text-primary' : 'text-muted-foreground'
-              }`}
-            >
-              Admin
-            </Link>
           </div>
 
           {/* Desktop Auth Buttons */}
           <div className="hidden md:flex items-center space-x-4">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={toggleTheme}
+              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+            >
+              {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+            </Button>
             <Link to="/login">
               <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
                 Login
@@ -98,14 +100,24 @@ const Navbar = () => {
               >
                 About
               </Link>
-              <Link 
-                to="/admin" 
-                className="text-muted-foreground hover:text-primary transition-colors"
-                onClick={toggleMobileMenu}
-              >
-                Admin
-              </Link>
               <div className="pt-4 space-y-2">
+                <Button
+                  variant="outline"
+                  onClick={toggleTheme}
+                  className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+                >
+                  {theme === 'dark' ? (
+                    <>
+                      <Sun size={16} className="mr-2" />
+                      Light Mode
+                    </>
+                  ) : (
+                    <>
+                      <Moon size={16} className="mr-2" />
+                      Dark Mode
+                    </>
+                  )}
+                </Button>
                 <Link to="/login" className="block" onClick={toggleMobileMenu}>
                   <Button variant="outline" className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground">
                     Login

@@ -13,18 +13,22 @@ import {
 
 const About = () => {
   const teamMembers = [
-    { name: "Shlok Aher", role: "Full Stack Developer" },
-    { name: "Yooshe Ansari", role: "Backend Developer" },
-    { name: "Nakul Bhatt", role: "Frontend Developer" }
+    { name: "Shlok Aher" },
+    { name: "Nakul Bhatt" },
+    { name: "Yooshe Ansari" }
   ];
 
   const technologies = [
-    { name: "JSP", icon: Code, category: "Frontend" },
-    { name: "Servlets", icon: Server, category: "Backend" },
-    { name: "HTML5 & CSS3", icon: Globe, category: "Frontend" },
-    { name: "MySQL", icon: Database, category: "Database" },
-    { name: "Bootstrap", icon: Code, category: "UI Framework" },
-    { name: "Apache Tomcat", icon: Server, category: "Server" }
+    { name: "React", icon: Code, category: "Frontend" },
+    { name: "TypeScript", icon: Code, category: "Language" },
+    { name: "JavaScript", icon: Code, category: "Language" },
+    { name: "Tailwind CSS", icon: Globe, category: "Styling" },
+    { name: "Vite", icon: Server, category: "Build Tool" },
+    { name: "Node.js", icon: Server, category: "Runtime" },
+    { name: "JSP", icon: Code, category: "Backend (Planned)" },
+    { name: "Servlets", icon: Server, category: "Backend (Planned)" },
+    { name: "MySQL", icon: Database, category: "Database (Planned)" },
+    { name: "Apache Tomcat", icon: Server, category: "Server (Planned)" }
   ];
 
   const objectives = [
@@ -35,11 +39,38 @@ const About = () => {
   ];
 
   const impacts = [
-    "Reduces workload & stress for security guards",
-    "Increases transparency and accountability in parking",
-    "Improves convenience for vehicle owners and renters",
-    "Supports eco-friendly practices by reducing paper usage",
-    "Lays foundation for future automation (QR-based entry, smart gates)"
+    {
+      title: "🚗 Reduces Urban Traffic Congestion",
+      description: "In crowded cities, 20–30% of traffic is caused by drivers searching for parking. PARKLINK allows users to pre-book spots, leading to faster parking, less road circling, and smoother traffic flow near malls, stations, and societies."
+    },
+    {
+      title: "📈 Improves Personal & Local Economy", 
+      description: "Parking owners can earn passive income by renting out unused spots. Especially helpful for middle-class families in urban housing societies and small shop owners with idle parking space. Turns an underused space into a micro-rental business model."
+    },
+    {
+      title: "🔄 Creates a Circular Economy in Urban Spaces",
+      description: "Rather than building more parking lots (which costs money & land), PARKLINK reuses already existing spaces, promotes shared urban infrastructure, and reduces environmental footprint."
+    },
+    {
+      title: "💰 Brings Financial Inclusion to Ordinary People",
+      description: "Even without technical knowledge or high investment, any verified person can start earning. PARKLINK acts as a gateway to digital finance for people who would otherwise not benefit from tech platforms."
+    },
+    {
+      title: "🧠 Reduces Stress & Decision Fatigue",
+      description: "Drivers often experience frustration and mental fatigue trying to find parking. PARKLINK's system minimizes uncertainty, offers clarity on availability, price, and location in advance, making urban travel more predictable and calm."
+    },
+    {
+      title: "🔒 Increases Safety & Accountability",
+      description: "Verified users (via Aadhaar and License uploads) and digital logs of bookings, payments, and user behavior reduce chances of unauthorized parking, parking fights, and damage to vehicles due to unclear parking arrangements."
+    },
+    {
+      title: "🌱 Supports Environmental Sustainability",
+      description: "Less time on roads = Less fuel waste = Lower carbon emissions. Digital logs mean no paper slips, registers, or manual lists."
+    },
+    {
+      title: "🧾 Supports Government Goals & Smart Cities",
+      description: "Aligned with India's Digital India, Smart Cities Mission, and Startup India goals. Can easily integrate with QR-based gates, IoT systems, and e-Governance APIs."
+    }
   ];
 
   return (
@@ -123,11 +154,11 @@ const About = () => {
             <CardTitle className="text-center">Social Impact & Benefits</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid lg:grid-cols-2 gap-6">
               {impacts.map((impact, index) => (
-                <div key={index} className="flex items-start gap-2 p-4 bg-accent/50 rounded-lg">
-                  <CheckCircle className="text-primary mt-0.5 flex-shrink-0" size={16} />
-                  <span className="text-sm">{impact}</span>
+                <div key={index} className="p-6 bg-accent/30 rounded-lg hover:bg-accent/50 transition-colors">
+                  <h3 className="font-semibold text-lg mb-3 text-primary">{impact.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{impact.description}</p>
                 </div>
               ))}
             </div>
@@ -170,7 +201,6 @@ const About = () => {
                     <Users className="text-primary-foreground" size={24} />
                   </div>
                   <h3 className="font-semibold text-lg">{member.name}</h3>
-                  <p className="text-muted-foreground">{member.role}</p>
                 </div>
               ))}
             </div>
